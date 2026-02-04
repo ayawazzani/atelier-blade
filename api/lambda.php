@@ -1,12 +1,15 @@
 <?php
 
-// 1. Load the Laravel Application
+// 1. CRITICAL: Load the Autoloader (This fixes the "Class not found" error)
+require __DIR__ . '/../vendor/autoload.php';
+
+// 2. Load the Laravel Application
 $app = require __DIR__ . '/../bootstrap/app.php';
 
-// 2. FORCE Storage to use /tmp (The only writable folder on Vercel)
+// 3. FORCE Storage to use /tmp (The only writable folder on Vercel)
 $app->useStoragePath('/tmp/storage');
 
-// 3. Run the Application (Standard Laravel 8 Logic)
+// 4. Run the Application (Standard Laravel 8 Logic)
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(
